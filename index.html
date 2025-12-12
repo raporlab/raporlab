@@ -1,165 +1,367 @@
 <!DOCTYPE html>
+
 <html lang="tr">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Raporlab - Dinamik Raporlama ve Analiz Sistemi</title>
+
     
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
     
+
     <style>
+
         /* TEMEL STİLLER: SOFT BEYAZ VE GRİ ODAK */
+
         :root {
+
             --bg-color: #ffffff; 
-            --text-color: #333333; 
-            --light-grey: #e0e0e0; 
-            --dark-grey: #666666; 
-            --primary-color: #4CAF50; 
-            --font-main: 'Montserrat', sans-serif; /* Ana Font Değişti */
-            --black-color: #000000; 
+
+            --text-color: #333333; /* Soft Siyah */
+
+            --light-grey: #e0e0e0; /* İnce çizgiler ve gölgeler için */
+
+            --dark-grey: #666666; /* Başlıklar için */
+
+            --primary-color: #4CAF50; /* Satın alma vurgusu (Canlı Yeşil) */
+
+            --font-main: 'Inter', sans-serif;
+
         }
+
+
 
         * {
+
             box-sizing: border-box;
+
             margin: 0;
+
             padding: 0;
+
         }
+
+
 
         body {
-            /* GÜNCELLEME: Body fontu Montserrat oldu (veya Inter'i tutabilirdik, Montserrat daha iyi bir logo fontudur) */
+
             font-family: var(--font-main);
+
             line-height: 1.5;
+
             color: var(--text-color);
+
             background-color: var(--bg-color);
+
             padding: 20px;
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             min-height: 100vh;
+
         }
+
         
+
         .container {
+
             width: 100%;
+
             max-width: 450px; 
+
             padding: 0 10px;
+
         }
+
+
 
         /* LOGO VE BAŞLIK */
+
         .logo-container {
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             margin-bottom: 40px;
+
             padding-bottom: 15px;
+
             border-bottom: 1px solid var(--light-grey); 
+
         }
+
+
 
         .logo-text {
-            /* GÜNCELLEME: Montserrat Kalın (700) kullanıldı */
-            font-family: var(--font-main);
-            font-size: 2.5em; 
-            font-weight: 700; 
-            color: var(--black-color); 
-            line-height: 1; 
-            letter-spacing: 0.5px; /* Daha belirgin Montserrat görünümü */
+
+            font-size: 2.2em;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+            color: var(--dark-grey);
+
         }
+
+
 
         .logo-icon {
+
             margin-right: 8px;
-            width: 45px; 
-            height: 45px;
+
+            width: 35px; 
+
+            height: 35px;
+
             background-color: transparent; 
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-        }
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+
         }
 
-        /* BÖLÜM BAŞLIKLARI VE BUTONLAR - Montserrat Fontunu Kullanacak */
-        .section-title {
-            text-align: center;
-            font-size: 0.8em;
-            color: var(--dark-grey);
-            margin: 30px 0 15px 0;
-            text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 2px;
-            /* Font Montserrat'tan geliyor */
+        .logo-icon img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+
         }
+
+
+
+        /* BÖLÜM BAŞLIKLARI */
+
+        .section-title {
+
+            text-align: center;
+
+            font-size: 0.8em;
+
+            color: var(--dark-grey);
+
+            margin: 30px 0 15px 0;
+
+            text-transform: uppercase;
+
+            font-weight: 500;
+
+            letter-spacing: 2px;
+
+        }
+
+
+
+        /* VİDEO VE PDF GÖMME STİLİ */
+
+        .embed-wrapper {
+
+            position: relative;
+
+            padding-bottom: 56.25%; /* 16:9 Oran */
+
+            height: 0;
+
+            overflow: hidden;
+
+            width: 100%;
+
+            border: 1px solid var(--light-grey);
+
+            border-radius: 6px;
+
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Yumuşak gölge */
+
+        }
+
+
+
+        .embed-wrapper iframe {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+
+        }
+
+
+
+        .pdf-embed-wrapper {
+
+            padding-bottom: 140%; /* Dikey PDF için */
+
+        }
+
+
+
+        /* BUTON STİLİ */
 
         .btn-purchase {
+
             display: block;
+
             width: 100%;
+
             padding: 14px;
+
             margin-top: 50px; 
+
             background-color: var(--primary-color); 
+
             color: #ffffff;
+
             text-decoration: none;
+
             border: none;
+
             border-radius: 6px;
+
             font-size: 1.1em;
+
             font-weight: 700;
+
             text-align: center;
+
             transition: background-color 0.2s ease;
+
             letter-spacing: 0.5px;
-            /* Font Montserrat'tan geliyor */
+
         }
+
+
 
         .btn-purchase:hover {
+
             background-color: #388E3C;
+
         }
+
+
 
         /* Footer */
+
         footer {
+
             margin-top: auto;
+
             color: var(--dark-grey);
+
             font-size: 0.75em;
+
             padding-top: 30px;
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <div class="container">
+
         <div class="logo-container">
-            <div class="logo-icon">
-                <img src="raporlab logo.png" alt="Raporlab İkonu">
-            </div>
+
+<div class="logo-icon">
+
+    <img src="raporlab logo.png" alt="Raporlab İkonu">
+
+</div>
+
             <div class="logo-text">raporlab</div>
+
         </div>
+
         
+
         <h2 class="section-title">SİSTEM KULLANIM VİDEOSU</h2>
+
         <div class="embed-wrapper">
+
             <iframe 
+
                 src="https://www.youtube.com/embed/iTasQ6ar8VY" 
+
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+
                 allowfullscreen>
+
             </iframe>
+
         </div>
+
+
 
         <h2 class="section-title">ÖRNEK ANALİZ RAPORU</h2>
+
         <div class="embed-wrapper pdf-embed-wrapper">
+
             <iframe 
+
                 src="https://drive.google.com/file/d/1NkcYQZptYvzAiFKM8R-7Nv88hUxionw1/preview" 
+
                 allowfullscreen>
+
             </iframe>
+
         </div>
+
         
+
         <a href="https://www.shopier.com/raporlab/41662486" target="_blank" class="btn-purchase">
+
             HEMEN SATIN AL
+
         </a>
+
         
+
     </div>
 
+
+
     <footer>
+
         <p>RaporLAB &bull; Dinamik Raporlama & Analiz Sistemi</p>
+
     </footer>
 
+
+
 </body>
+
 </html>
