@@ -1,146 +1,89 @@
 <!DOCTYPE html>
-
 <html lang="tr">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Raporlab - Dinamik Raporlama ve Analiz Sistemi</title>
-
     
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-
     
-
     <style>
-
         /* TEMEL STİLLER: SOFT BEYAZ VE GRİ ODAK */
-
         :root {
-
             --bg-color: #ffffff; 
-
-            --text-color: #333333; /* Soft Siyah */
-
-            --light-grey: #e0e0e0; /* İnce çizgiler ve gölgeler için */
-
-            --dark-grey: #666666; /* Başlıklar için */
-
-            --primary-color: #4CAF50; /* Satın alma vurgusu (Canlı Yeşil) */
-
-            --font-main: 'Inter', sans-serif;
-
+            --text-color: #333333; 
+            --light-grey: #e0e0e0; 
+            --dark-grey: #666666; 
+            --primary-color: #4CAF50; 
+            --font-main: 'Montserrat', sans-serif; /* Ana Font Montserrat */
+            --black-color: #000000; 
         }
-
-
 
         * {
-
             box-sizing: border-box;
-
             margin: 0;
-
             padding: 0;
-
         }
-
-
 
         body {
-
             font-family: var(--font-main);
-
             line-height: 1.5;
-
             color: var(--text-color);
-
             background-color: var(--bg-color);
-
             padding: 20px;
-
             display: flex;
-
             flex-direction: column;
-
             align-items: center;
-
             min-height: 100vh;
-
         }
-
         
-
         .container {
-
             width: 100%;
-
             max-width: 450px; 
-
             padding: 0 10px;
-
         }
-
-
 
         /* LOGO VE BAŞLIK */
-
         .logo-container {
-
+            /* Sadece ikonu ortalamak için justifyContent: center yeterli */
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             margin-bottom: 40px;
-
             padding-bottom: 15px;
-
             border-bottom: 1px solid var(--light-grey); 
-
         }
 
-
-
-
+        /* LOGO METNİ KALDIRILDIĞI İÇİN BU KURAL GEREKSİZ AMA YORUMDA BIRAKILDI */
+        /*
+        .logo-text {
+            font-family: var(--font-main);
+            font-size: 2.5em; 
+            font-weight: 700; 
+            color: var(--black-color); 
+            line-height: 1; 
+            letter-spacing: 0.5px; 
+        }
+        */
 
         .logo-icon {
-
-            margin-right: 8px;
-
-            width: 40px; 
-
-            height: 40px;
-
+            /* Artık metin olmadığı için sağdaki boşluğa gerek yok */
+            margin-right: 0; 
+            /* İstenen büyüklük */
+            width: 70px; 
+            height: 70px;
             background-color: transparent; 
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
         }
-
         .logo-icon img {
-
             width: 100%;
-
             height: 100%;
-
             object-fit: contain;
-
         }
-
-
 
         /* BÖLÜM BAŞLIKLARI */
 
