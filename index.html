@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RaporLAB - Öğretmenlerin Veri Analiz Platformu</title>
+    <title>RaporLAB - Öğretmenler İçin Analiz Platformu</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* TEMEL STİLLER VE RESET */
+        /* TEMEL STİLLER: SOFT BEYAZ VE GRİ ODAK */
         :root {
-            --primary-color: #4CAF50; /* Canlı Yeşil - Başlık ve Butonlar için */
-            --secondary-color: #2E7D32; /* Koyu Yeşil */
-            --text-color: #333;
-            --bg-color: #f9f9f9;
-            --white: #ffffff;
-            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --bg-color: #ffffff; 
+            --text-color: #333333; /* Soft Siyah */
+            --light-grey: #e0e0e0; /* İnce çizgiler ve gölgeler için */
+            --dark-grey: #666666; /* Başlıklar için */
+            --primary-color: #4CAF50; /* Satın alma vurgusu (Canlı Yeşil) */
+            --font-main: 'Inter', sans-serif;
         }
 
         * {
@@ -22,215 +27,158 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
+            font-family: var(--font-main);
+            line-height: 1.5;
             color: var(--text-color);
             background-color: var(--bg-color);
-            padding-top: 60px; /* Sabit başlık yüksekliği */
-        }
-
-        /* BAŞLIK (HEADER) */
-        header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 15px 20px;
-            text-align: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-        }
-
-        header h1 {
-            font-size: 1.8em;
-            letter-spacing: 1px;
-        }
-
-        /* BÖLÜMLER (SECTION) */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-
-        section {
-            padding: 40px 20px;
-            margin-bottom: 20px;
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-
-        section h2 {
-            color: var(--secondary-color);
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 1.7em;
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-            padding-bottom: 5px;
-            width: auto;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-        }
-
-        /* BUTON STİLİ */
-        .btn {
-            display: block; /* Mobil için tam genişlik */
+        
+        .container {
             width: 100%;
-            padding: 15px 20px;
-            margin: 20px 0;
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            font-weight: bold;
+            max-width: 450px; 
+            padding: 0 10px;
+        }
+
+        /* LOGO VE BAŞLIK */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--light-grey); 
+        }
+
+        .logo-text {
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--dark-grey);
+        }
+
+        .logo-icon {
+            margin-right: 8px;
+            width: 35px; 
+            height: 35px;
+            background-color: transparent; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* BÖLÜM BAŞLIKLARI */
+        .section-title {
             text-align: center;
-            transition: background-color 0.3s ease;
+            font-size: 0.8em;
+            color: var(--dark-grey);
+            margin: 30px 0 15px 0;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 2px;
         }
 
-        .btn:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .btn-secondary {
-            background-color: #FF9800; /* Turuncu */
-        }
-
-        .btn-secondary:hover {
-            background-color: #F57C00;
-        }
-
-        /* VİDEO BÖLÜMÜ */
-        .video-wrapper {
+        /* VİDEO VE PDF GÖMME STİLİ */
+        .embed-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Oran */
             height: 0;
             overflow: hidden;
-            max-width: 100%;
-            margin: 20px 0;
-            border-radius: 5px;
+            width: 100%;
+            border: 1px solid var(--light-grey);
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Yumuşak gölge */
         }
 
-        .video-wrapper iframe {
+        .embed-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            border: none;
         }
 
-        /* AYAK (FOOTER) */
-        footer {
+        .pdf-embed-wrapper {
+            padding-bottom: 140%; /* Dikey PDF için */
+        }
+
+        /* BUTON STİLİ */
+        .btn-purchase {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin-top: 50px; 
+            background-color: var(--primary-color); 
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: 700;
             text-align: center;
-            padding: 15px;
-            background-color: var(--secondary-color);
-            color: var(--white);
-            margin-top: 20px;
+            transition: background-color 0.2s ease;
+            letter-spacing: 0.5px;
         }
 
-        /* DİKKAT ÇEKİCİ ALAN */
-        .highlight {
-            background-color: #E8F5E9; /* Açık Yeşil Tonu */
-            border-left: 5px solid var(--primary-color);
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
+        .btn-purchase:hover {
+            background-color: #388E3C;
         }
 
-        /* RESPONSIVE DÜZENLEMELER (Tablet ve Masaüstü için) */
-        @media (min-width: 600px) {
-            header h1 {
-                font-size: 2em;
-            }
-
-            section {
-                padding: 50px 30px;
-            }
-
-            .btn {
-                width: 70%; /* Masaüstünde ortada daha dar bir buton */
-                margin-left: auto;
-                margin-right: auto;
-                display: block;
-            }
-
-            .button-group {
-                display: flex;
-                gap: 20px;
-                justify-content: center;
-            }
-            .button-group .btn {
-                width: 45%;
-                margin: 0;
-            }
+        /* Footer */
+        footer {
+            margin-top: auto;
+            color: var(--dark-grey);
+            font-size: 0.75em;
+            padding-top: 30px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>🔬 RaporLAB</h1>
-    </header>
-
     <div class="container">
-
-        <section id="giris">
-            <h2>Öğretmenler İçin Veri Analizinde Çığır Açın!</h2>
-            <div class="highlight">
-                <p><strong>RaporLAB</strong>, Google'ın güçlü altyapısını kullanarak (Formlar, E-Tablolar ve Looker Studio), öğrenci verilerinizi otomatik olarak analiz eder ve size **anında, görsel, dinamik ve hazır** raporlar sunar. Artık saatlerce veri birleştirmekle uğraşmayın!</p>
+        <div class="logo-container">
+            <div class="logo-icon">
+                <img src="https://drive.google.com/file/d/1r2VPpnqMATJjMhySqt9RVjnBZCenrAI6/preview" alt="RaporLAB İkonu">
             </div>
-            <ul>
-                <li>📊 **Otomatik Analiz:** Veri girildiği an raporlarınız güncellenir.</li>
-                <li>📱 **Mobil Uyumlu:** Telefonunuzdan bile tüm raporlarınızı takip edin.</li>
-                <li>🔗 **Kolay Kurulum:** Karmaşık yazılımlara gerek yok, basit bir entegrasyon.</li>
-            </ul>
-        </section>
+            <div class="logo-text">RaporLAB</div>
+        </div>
+        
+        <h2 class="section-title">4 DAKİKALIK KULLANIM VİDEOSU</h2>
+        <div class="embed-wrapper">
+            <iframe 
+                src="https://www.youtube.com/embed/iTasQ6ar8VY" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
 
-        <section id="video">
-            <h2>🚀 Kullanım Videosu (4 Dakika)</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Sistemin nasıl çalıştığını ve size nasıl zaman kazandıracağını bu kısa videoda izleyebilirsiniz.</p>
-            
-            <div class="video-wrapper">
-                <iframe 
-                    width="560" 
-                    height="315" 
-                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            
-            <p style="text-align: center; margin-top: 15px; font-style: italic;">(Videoyu izlemek için yukarıdaki alana tıklayın.)</p>
-        </section>
-
-        <section id="detaylar">
-            <h2>📋 Detaylı İnceleme ve Satın Alma</h2>
-            <p style="text-align: center; margin-bottom: 30px;">5 sayfalık örnek raporumuzu inceleyerek çıktıların kalitesini görebilir ve hemen ardından sisteme sahip olabilirsiniz.</p>
-
-            <div class="button-group">
-                <a href="LINK_OF_YOUR_5_PAGE_PDF_REPORT" target="_blank" class="btn btn-secondary">
-                    <span role="img" aria-label="rapor">📄</span> Örnek Raporu İndir
-                </a>
-
-                <a href="YOUR_SHOPIER_PURCHASE_LINK" target="_blank" class="btn">
-                    <span role="img" aria-label="satın al">🛒</span> Hemen Satın Al!
-                </a>
-            </div>
-            
-        </section>
-
+        <h2 class="section-title">5 SAYFALIK ÖRNEK ANALİZ RAPORU</h2>
+        <div class="embed-wrapper pdf-embed-wrapper">
+            <iframe 
+                src="https://drive.google.com/file/d/1NkcYQZptYvzAiFKM8R-7Nv88hUxionw1/preview" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <a href="https://www.shopier.com/raporlab/41662486" target="_blank" class="btn-purchase">
+            HEMEN SATIN AL
+        </a>
+        
     </div>
 
     <footer>
-        <p>&copy; 2025 RaporLAB. Tüm Hakları Saklıdır.</p>
+        <p>RaporLAB &bull; Kolay Veri Analizi</p>
     </footer>
 
-    </body>
+</body>
 </html>
