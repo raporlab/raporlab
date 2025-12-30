@@ -3,227 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raporlab - Profesyonel Analiz Çözümleri</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    
+    <title>Raporlab | Profesyonel Raporlama</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --primary: #6366f1; /* Modern Indigo */
-            --primary-dark: #4f46e5;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --radius: 16px;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* HEADER & LOGO */
-        header {
-            text-align: center;
-            margin-bottom: 32px;
-            margin-top: 20px;
-        }
-
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-
-        .tagline {
-            font-size: 14px;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        /* CARDS */
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 20px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: var(--shadow);
-        }
-
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--primary);
-            margin-bottom: 16px;
-        }
-
-        .section-label::before {
-            content: "";
-            width: 4px;
-            height: 14px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        /* EMBEDS */
-        .media-container {
+        /* Blueprint Arka Plan & Vinyet */
+        body { 
+            background-color: #050a15; color: #e2e8f0;
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+            background-size: 35px 35px;
             position: relative;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #000;
+        }
+        body::before {
+            content: ""; position: fixed; inset: 0;
+            background: radial-gradient(circle, transparent 25%, rgba(5, 10, 21, 0.98) 100%);
+            pointer-events: none; z-index: 10;
         }
 
-        .video-box { padding-bottom: 56.25%; }
-        .pdf-box { padding-bottom: 120%; }
+        .content-layer { position: relative; z-index: 20; }
+        .gradient-text { background: linear-gradient(90deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-bg { background: rgba(22, 30, 45, 0.7); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px); }
+        .shopier-primary { background: #6366f1; transition: 0.3s; box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+        .shopier-primary:hover { background: #4f46e5; transform: scale(1.02); box-shadow: 0 0 30px rgba(99, 102, 241, 0.5); }
 
-        iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border: none;
+        /* Kayan Görsel Bandı Animasyonu */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-280px * 5)); }
         }
-
-        /* CTA BUTTON */
-        .cta-container {
-            position: sticky;
-            bottom: 20px;
-            z-index: 100;
-            margin-top: 40px;
-        }
-
-        .btn-buy {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            background: var(--primary);
-            padding: 16px;
-            border-radius: var(--radius);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-buy:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 25px 30px -5px rgba(99, 102, 241, 0.4);
-        }
-
-        .btn-main-text {
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 4px;
-        }
-
-        .btn-sub-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-bottom: 40px;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* Mobil Optimizasyon */
-        @media (max-width: 400px) {
-            .container { padding: 0 5px; }
-            .card { padding: 16px; }
-        }
+        .slider-track { display: flex; width: calc(280px * 10); animation: scroll 25s linear infinite; }
+        .slide { width: 280px; padding: 10px; flex-shrink: 0; }
+        .slide img { width: 100%; height: 180px; object-fit: cover; border-radius: 15px; border: 1px solid rgba(99, 102, 241, 0.2); }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased">
 
-    <div class="container">
-        <header>
-            <div class="logo-wrap">
-                <img src="raporlab logo.png" alt="Raporlab" class="logo-icon">
-                <span class="logo-text">raporlab</span>
+    <div class="content-layer">
+        <header class="sticky top-0 z-50 bg-[#050a15]/80 backdrop-blur-md border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="text-2xl font-black tracking-tighter gradient-text">RAPORLAB</div>
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#demo" class="hover:text-indigo-400">Demo</a>
+                    <a href="#video" class="hover:text-indigo-400">Nasıl Çalışır?</a>
+                    <a href="#urunler" class="hover:text-indigo-400">Ürünler</a>
+                </nav>
+                <a href="https://www.shopier.com/raporlab/41662486" class="shopier-primary px-6 py-2 rounded-full text-sm font-bold">Satın Al</a>
             </div>
-            <p class="tagline">Dinamik Raporlama & Analiz Sistemi</p>
         </header>
 
-        <div class="card">
-            <div class="section-label">Kullanım Rehberi</div>
-            <div class="media-container video-box">
-                <iframe src="https://www.youtube.com/embed/pxyEUgC5m6A?si=YkrfELMwx5D7zfev" allowfullscreen></iframe>
+        <section class="max-w-7xl mx-auto px-6 py-20 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6">Yeni Nesil <span class="gradient-text">Öğrenci</span> Takip sistemi</h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10">Eğitim koçları ve öğretmenler için geliştirilen dinamik takip sistemiyle, her öğrencinin potansiyelini raporlarla somutlaştırın.</p>
+            
+            <div class="overflow-hidden py-10">
+                <div class="slider-track">
+                    <div class="slide"><img src="1.jpg" alt="Rapor 1"></div>
+                    <div class="slide"><img src="2.jpg" alt="Rapor 2"></div>
+                    <div class="slide"><img src="3.jpg" alt="Rapor 3"></div>
+                    <div class="slide"><img src="4.jpg" alt="Rapor 4"></div>
+                    <div class="slide"><img src="5.jpg" alt="Rapor 5"></div>
+                    <div class="slide"><img src="1.jpg" alt="Rapor 1"></div>
+                    <div class="slide"><img src="2.jpg" alt="Rapor 2"></div>
+                    <div class="slide"><img src="3.jpg" alt="Rapor 3"></div>
+                    <div class="slide"><img src="4.jpg" alt="Rapor 4"></div>
+                    <div class="slide"><img src="5.jpg" alt="Rapor 5"></div>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <div class="section-label">Örnek Rapor Çıktısı</div>
-            <div class="media-container pdf-box">
-                <iframe src="https://drive.google.com/file/d/1IbhIvvHHiYXPYGdVr3NlVatVt9v4Vr6X/preview"></iframe>
+        <section id="video" class="max-w-5xl mx-auto px-6 py-12">
+            <div class="card-bg rounded-3xl overflow-hidden shadow-2xl">
+                <div class="aspect-video">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/pxyEUgC5m6A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold italic">// Tanıtım & Kullanım Videosu</h3>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <div class="section-label">Demo Rapor</div>
-            <div class="media-container video-box">
-                <iframe 
-                    src="https://lookerstudio.google.com/embed/reporting/608d793f-e486-48c2-a47e-ec14db27a653/page/p_71gzv0y2yd" 
-                    allowfullscreen 
-                    sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
-                </iframe>
+        <section id="demo" class="max-w-7xl mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center text-indigo-400">Canlı Demo ve Örnekler</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-bg p-8 rounded-3xl text-center">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h4 class="text-xl font-bold mb-4">Looker Studio Demo</h4>
+                    <p class="text-gray-400 mb-6 text-sm">Raporun interaktif halini canlı olarak deneyimleyin.</p>
+                    <a href="https://lookerstudio.google.com/reporting/608d793f-e486-48c2-a47e-ec14db27a653" target="_blank" class="inline-block border border-indigo-500 text-indigo-400 px-8 py-2 rounded-lg hover:bg-indigo-500 hover:text-white transition">DEMOYA GİT</a>
+                </div>
+                <div class="card-bg p-8 rounded-3xl text-center">
+                    <div class="text-5xl mb-4">📂</div>
+                    <h4 class="text-xl font-bold mb-4">Örnek Rapor Dosyası</h4>
+                    <p class="text-gray-400 mb-6 text-sm">Drive üzerinden örnek çıktıları hemen inceleyin.</p>
+                    <a href="https://drive.google.com/file/u/0/d/1IbhIvvHHiYXPYGdVr3NlVatVt9v4Vr6X/view" target="_blank" class="inline-block border border-gray-600 text-gray-400 px-8 py-2 rounded-lg hover:bg-gray-700 transition">DOSYAYI AÇ</a>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="cta-container">
-            <a href="https://www.shopier.com/raporlab/41662486" target="_blank" class="btn-buy">
-                <span class="btn-main-text">Hemen Satın Al</span>
-                <span class="btn-sub-text">RAPORLAB100 koduyla ₺100 İNDİRİM!</span>
-            </a>
-        </div>
+        <section id="urunler" class="max-w-4xl mx-auto px-6 py-20">
+            <div class="card-bg p-8 md:p-12 rounded-[2.5rem] flex flex-col md:flex-row gap-12 items-center border-indigo-500/30 shadow-[0_0_50px_rgba(99,102,241,0.1)]">
+                <div class="w-full md:w-1/2 aspect-square bg-indigo-500/10 rounded-3xl flex items-center justify-center text-8xl shadow-inner border border-indigo-500/20">💎</div>
+                <div class="w-full md:w-1/2 space-y-6">
+                    <h2 class="text-3xl font-extrabold tracking-tight">Full Paket Raporlab</h2>
+                    <ul class="text-gray-400 space-y-3 text-sm">
+                        <li>✅ Sınırsız Veri Entegrasyonu</li>
+                        <li>✅ Looker Studio Özel Şablonu</li>
+                        <li>✅ Ömür Boyu Güncelleme Desteği</li>
+                    </ul>
+                    <div class="text-4xl font-black text-white">499.00 TL</div>
+                    <a href="https://www.shopier.com/raporlab/41662486" class="block w-full text-center shopier-primary py-5 rounded-xl font-black text-xl shadow-lg">ŞİMDİ SATIN AL</a>
+                </div>
+            </div>
+        </section>
 
-        <footer>
-            <p>&copy; 2026 Raporlab. Tüm hakları saklıdır.</p>
+        <footer class="p-12 border-t border-white/5 text-center text-gray-600 text-xs tracking-widest uppercase">
+            &copy; 2025 Raporlab | Secure Checkout by Shopier
         </footer>
     </div>
 
